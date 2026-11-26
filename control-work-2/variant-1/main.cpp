@@ -2,10 +2,11 @@
 #include <iostream>
 
 int main() {
-    std::cout << "Выберите дерево: 1 — берёза, 2 — ель.\n";
+    std::cout << "Выберите дерево: 1 — берёза, 2 — ель." << std::endl;
     int choice = 0;
-    if (choice != 1 && choice != 2) {
-        std::cout << "Введите 1 или 2\n";
+    if (!(std::cin >> choice) || (choice != 1 && choice != 2)) {
+        std::cout << "Введите 1 или 2" << std::endl;
+        return 1;
     }
 
     Tree* tree;
@@ -15,20 +16,21 @@ int main() {
         tree = new Spruce;
     }
 
+    std::cout << "Позднее связывание:" << std::endl;
     tree->Show();
     tree->ShowWinter();
 
     Birch birch;
     Spruce spruce;
-    std::cout << "\nРаннее связывание:\n";
+    std::cout << "Раннее связывание:" << std::endl;
     birch.Birch::Show();
     birch.Birch::ShowWinter();
     spruce.Spruce::Show();
     spruce.Spruce::ShowWinter();
 
-    std::cout << "\nСоздано объектов: " << Tree::GetObjectCount() << '\n';
+    std::cout << "Создано объектов: " << Tree::GetObjectCount() << std::endl;
 
     delete tree;
     std::cout << "После удаления выбранного дерева: "
-              << Tree::GetObjectCount() << '\n';
+              << Tree::GetObjectCount() << std::endl;
 }
